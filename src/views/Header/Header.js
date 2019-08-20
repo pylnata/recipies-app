@@ -13,6 +13,14 @@ const Header = props => {
         <img src={Logo} alt="Recipe-App" className="logo" />
         <div className="title  d-none d-lg-block">RecipiesApp</div>
         <SearchForm />
+
+                <a className="text-dark ml-2 mt-2"
+                  href="https://github.com/pylnata/recipies-app"
+                  title="Star on GitHub"
+                >
+                  <i className="fab fa-github" />
+                </a>
+
       </header>
 
       {props.usedCalls > 0 && (

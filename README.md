@@ -19,7 +19,7 @@ Application allowes:
 * save recipes to Favourite List;
 * create editable shop list based on ingredients from recipies.
 
-P.S. Due restrictions of usage spoonacular API it is possible to have only 150 calls to their service per day, so in case if limit is reached fake data is used.
+P.S. Due to restrictions of usage spoonacular API it is possible to have only 150 calls to their service per day, so in case if limit is reached fake data is used.
 
 P.P.S. If you want to clone and launch this project, pay attention that src/config.js has to contain your own created API keys.
 
