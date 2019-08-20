@@ -23,8 +23,8 @@ const Likes = props => {
           data-toggle="dropdown"
           aria-expanded={dropdownOpen}
         >
-          <Button outline color="danger">
-            <i className="fa fa-heart" />
+          <Button outline color="danger" className="border-0">
+            <i className="fa fa-heart" />{" "}{props.likes.length}
           </Button>
         </DropdownToggle>
         <DropdownMenu className="like-list border-0 p-2" right>

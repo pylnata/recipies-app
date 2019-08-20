@@ -18,7 +18,7 @@ const callApi = (query, offset, dispatch, useFake = false) => {
 export const search = (query, offset) => dispatch => {
   dispatch({ type: actionTypes.SEARCH_INIT });
   callApi(query, offset, dispatch).catch(error => {
-    if (error.response && error.response.status === 402) {
+    if (error.needFakeData) {
       // need use fake data
       callApi(query, offset, dispatch, true).catch(err => {
         dispatch({ type: actionTypes.SEARCH_FAIL, err: err });

@@ -19,7 +19,7 @@ export const getRecipe = id => dispatch => {
   dispatch({ type: actionTypes.RECIPE_INIT });
 
   callApi(id, dispatch).catch(error => {
-    if (error.response && error.response.status === 402) {
+    if (error.needFakeData) {
       callApi(id, dispatch, true).catch(error => {
         dispatch({ type: actionTypes.RECIPE_FAIL, error });
       });

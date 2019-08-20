@@ -17,8 +17,12 @@ export default httpClient => {
       return res;
     },
     err => {
-      if (err.response.status === 402) {
-        err.message = "Limit of usage API is reached for today. Fake data is displayed now.";
+      if(err.message.includes('timeout')) {
+        err.needFakeData = true;
+      }
+      else if (err.response && err.response.status === 402) {
+            err.needFakeData = true;
+            err.message = "Limit of usage API is reached for today. Fake data is displayed now.";
       }
       setError(err);
       throw err;

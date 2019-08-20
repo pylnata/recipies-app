@@ -1,8 +1,6 @@
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
-
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
 import thunk from "redux-thunk";
 
 import recipiesReducer from "./features/RecipeList/reducer";
@@ -28,13 +26,13 @@ if (process.env.NODE_ENV === "development") {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ['likes']
+  whitelist: ["likes"]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 //export default () => {
-  const store = createStore(persistedReducer, compose(...middlewares));
-  const persistor = persistStore(store);
-  export { store, persistor };
+const store = createStore(persistedReducer, compose(...middlewares));
+const persistor = persistStore(store);
+export { store, persistor };
 //};
