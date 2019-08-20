@@ -34,7 +34,7 @@ export const getRecipe = (id, useFakeData = false) => {
     } else {
       return Promise.reject(
         new Error(
-          "There is no data for this recipe in fake DB. Try later when API works."
+          "There is no data for this recipe in fake DB. Try later when API works or choose recipe from first page at left."
         )
       );
     }
