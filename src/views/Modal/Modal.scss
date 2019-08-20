@@ -1,0 +1,16 @@
+.modal-anim {
+  position: fixed;
+  z-index: 500;
+  width: 70%;
+  padding: 16px;
+  left: 15%;
+  top: 30%;
+  transition: all 0.3s ease-out;
+}
+
+@media (min-width: 600px) {
+  .modal-anim {
+    width: 500px;
+    left: calc(50% - 250px);
+  }
+}

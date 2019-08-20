@@ -1,0 +1,26 @@
+@import "../../../assets/scss/theme";
+
+.shop-item {
+  font-size: 0.8em;
+  background-color: rgba($white, .2);
+  span {
+    flex: 1;
+  }
+  i {
+    cursor: pointer;
+  }
+
+  &__amount-input {
+    max-width: 30px;
+    text-align: center;
+    margin-right: 3px;
+  }
+
+  &__edit {
+    color: $success;
+  }
+  &__remove {
+    color: $secondary;
+    margin-left: 5px;
+  }
+}

@@ -1,0 +1,50 @@
+@import "../../assets/scss/theme";
+
+.likes {
+  grid-area: likes;
+  justify-self: right;
+  .btn {
+    border-radius: 50%;
+    i {
+      font-size: 1em;
+    }
+  }
+}
+
+.like-btn {
+  &:hover {
+    color: $danger;
+  }
+  i {
+    color: $danger;
+    font-size: 2em;
+  }
+}
+
+.like-list {
+  font-size: 0.8em;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 3px 3px 5px 3px $gray-400;
+  div {
+    padding: 5px;
+    border: 1px solid $gray-300;
+    a,
+    a:active,
+    a:visited {
+      color: $gray-800;
+    }
+    a:hover {
+      color: $success;
+    }
+  }
+
+  &__remove {
+    color: $secondary;
+    cursor: pointer;
+    &:hover {
+      color: $gray-400;
+    }
+  }
+}

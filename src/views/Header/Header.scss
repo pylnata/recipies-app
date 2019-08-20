@@ -1,0 +1,14 @@
+header {
+  grid-area: search;
+  .logo {
+    width: 32px;
+  }
+
+  .title {
+    font-family: "Dancing Script", cursive;
+    font-size: 1.7em;
+    font-weight: 500;
+    display: inline-block;
+    margin: -3px 0 0 5px;
+  }
+}

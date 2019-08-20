@@ -1,0 +1,43 @@
+@import "../../assets/scss/theme";
+
+.recipies {
+  grid-area: recipe-list;
+  overflow-y: auto;
+
+  &__list {
+    @include media-breakpoint-down(md) {
+      max-height: 500px;
+      margin-bottom: 10px;
+    }
+    overflow-y: auto;
+    max-height: 98%;
+    a,
+    a:active,
+    a:visited {
+      text-decoration: none;
+      color: $gray-800;
+      &.active {
+        .recipe-item {
+          background: rgba($white, 0.5);
+        }
+      }
+    }
+    a:hover {
+      color: $success;
+    }
+  }
+  .page {
+    font-size: 1.5em;
+    cursor: pointer;
+    &:hover {
+      color: $success;
+    }
+    &--noactive {
+      cursor: initial;
+      color: $gray-500;
+      &:hover {
+        color: $gray-500;
+      }
+    }
+  }
+}

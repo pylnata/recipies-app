@@ -1,0 +1,20 @@
+@import "../../../assets/scss/theme";
+
+.recipe-ings {
+  font-size: 0.9em;
+  div {
+    cursor: pointer;
+    width: 180px;
+    @include media-breakpoint-down(lg) {
+      width: auto;
+    }
+
+    border: 1px solid $gray-200;
+    &:hover {
+      color: $success;
+    }
+    i {
+      color: $success;
+    }
+  }
+}

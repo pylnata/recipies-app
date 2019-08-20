@@ -1,0 +1,31 @@
+@import "../../assets/scss/theme";
+
+.recipe {
+  grid-area: recipe;
+  overflow-y: auto;
+  font-size: 0.9em;
+  border-radius: 5px;
+
+  .badge {
+    background-color: $gray-500;
+  }
+
+  .main-img {
+    width: 50%;
+    max-width: 500px;
+    border-radius: 5px;
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
+  }
+  .toggler {
+    border-bottom: 1px dashed #333;
+    cursor: pointer;
+  }
+  ol {
+    margin: 0;
+    li {
+      margin-bottom: 5px;
+    }
+  }
+}
