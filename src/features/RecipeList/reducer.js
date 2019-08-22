@@ -9,12 +9,11 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SEARCH:
-      return { ...state, isLoading: true };
+    return { ...state, error: null, isLoading: true };
     case actionTypes.SEARCH_SUCCESS:
-      return { ...state, isLoading: false, data: action.data };
+      return { ...state, error: null, isLoading: false, data: action.data };
     case actionTypes.SEARCH_FAIL:
-    //console.log(action.error)
-      return { ...state, isLoading: false, error: {message: action.error.message} };
+      return { ...state, isLoading: false, error: action.error };
     default:
       return state;
   }

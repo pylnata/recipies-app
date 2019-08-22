@@ -17,10 +17,7 @@ export default httpClient => {
       return res;
     },
     err => {
-      if(err.message.includes("canceled")) {
-        throw err;
-      }
-      else if(err.message.includes('timeout')) {
+      if(err.message.includes('timeout')) {
         err.needFakeData = true;
       }
       else if (err.response && err.response.status === 402) {

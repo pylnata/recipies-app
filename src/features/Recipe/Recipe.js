@@ -33,7 +33,7 @@ const Recipe = props => {
   }
 
   if (error) {
-    return <div className="recipe bg-white mr-3 ml-3 p-3">{error}</div>;
+    return <div className="recipe bg-white mr-3 ml-3 p-3">{error.message}</div>;
   }
 
   if (!recipe || !recipe.id) return null;

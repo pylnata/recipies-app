@@ -11,10 +11,12 @@ const alwaysUseFakeNow = () => {
 }
 
 export const getSearchResults = (query, offset = 0, useFakeData = false) => {
-  if ( useFakeData || window.localStorage.getItem("use_fake_data") ) {
+
+  if ( useFakeData || window.localStorage.getItem("use_fake_data")) {
     alwaysUseFakeNow();
+    console.log('USE FAKE PROMISE!!!!');
     return new Promise(function(resolve) {
-      setTimeout(() => resolve({ data: fakeData.results[offset] }), 500);
+      setTimeout(() => resolve({ data: fakeData.results[offset] }), 300);
     });
   } else {
     return axios.get("/recipes/search", {
@@ -30,7 +32,7 @@ export const getRecipe = (id, useFakeData = false) => {
 
     if (fakeData.recipies[id]) {
       return new Promise(function(resolve) {
-        setTimeout(() => resolve({ data: fakeData.recipies[id] }), 2000);
+        setTimeout(() => resolve({ data: fakeData.recipies[id] }), 500);
       });
     } else {
       return Promise.reject(

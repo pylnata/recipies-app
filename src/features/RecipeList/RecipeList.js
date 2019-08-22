@@ -8,7 +8,7 @@ import { SearchContext } from "../../contexts/SearchContext";
 import { search } from "./actions";
 import { COUNT_RECIPIES_ON_PAGE } from "../../config";
 
-import  useTraceUpdated  from "../../hooks/useTraceUpdated";
+import useTraceUpdated from "../../hooks/useTraceUpdated";
 
 import "./RecipeList.scss";
 
@@ -37,7 +37,7 @@ const RecipeList = props => {
   if (isLoading) {
     result = <Spinner />;
   } else if (error) {
-    result = <div>{error}</div>;
+    result = <div>{error.message}</div>;
   } else if (data && data.results) {
     result = data.results.map(item => (
       <RecipeItem recipe={item} key={item.id} />
@@ -72,7 +72,8 @@ const mapStateToProps = ({ recipeList }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  search: (query, offset) => dispatch(search(query, offset))
+  search: (query, offset, useFakeData) =>
+    dispatch(search(query, offset, useFakeData))
 });
 
 const connectedRecipeList = connect(

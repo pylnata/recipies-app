@@ -20,6 +20,7 @@ export const searchFail = message => ({
   error: message
 });
 
+
 /*
 const callApi = (query, offset, dispatch, useFake = false) => {
   return api.getSearchResults(query, offset, useFake).then(response => {
