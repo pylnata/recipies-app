@@ -13,20 +13,22 @@ import WithErrorHandler from "./hoc/WithErrorHandler";
 
 import "./App.scss";
 
-function App(props) {
+function App() {
   return (
     <>
       <div className="bg-app w-100">
         <Container className="content p-3 pt-4">
-          <SearchProvider>
-            <Header usedCalls={props.usedCalls} />
-            <RecipeList />
-          </SearchProvider>
-          <Switch>
-            <Route path="/recipe/:recipe_id(\d+)" exact component={Recipe} />
-            <Route path="/" exact component={Recipe} />
-            <Redirect to="/" />
-          </Switch>
+          <WithErrorHandler>
+            <SearchProvider>
+              <Header />
+              <RecipeList />
+            </SearchProvider>
+            <Switch>
+              <Route path="/recipe/:recipe_id(\d+)" exact component={Recipe} />
+              <Route path="/" exact component={Recipe} />
+              <Redirect to="/" />
+            </Switch>
+          </WithErrorHandler>
           <Likes />
           <ShopList />
         </Container>
@@ -36,4 +38,4 @@ function App(props) {
   );
 }
 
-export default WithErrorHandler(App);
+export default App;

@@ -8,7 +8,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SEARCH_INIT:
+    case actionTypes.SEARCH:
       return { ...state, isLoading: true };
     case actionTypes.SEARCH_SUCCESS:
       return { ...state, isLoading: false, data: action.data };

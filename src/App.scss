@@ -30,6 +30,8 @@ $grid-breakpoints: (
 .content {
   border-radius: 5px;
   height: 95%;
+  @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
+
   @include media-breakpoint-down(md) {
     height: auto;
   }

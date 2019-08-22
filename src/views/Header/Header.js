@@ -7,6 +7,9 @@ import Logo from "../../assets/img/logo.png";
 import "./Header.scss";
 
 const Header = props => {
+
+  console.log('header rendered');
+
   return (
     <>
       <header className="d-flex justify-content-center align-items-start">
@@ -20,17 +23,7 @@ const Header = props => {
                 >
                   <i className="fab fa-github" />
                 </a>
-
       </header>
-
-      {props.usedCalls > 0 && (
-        <div
-          className="apistat"
-          title="shows how many calls used of day's limit at api https://spoonacular.com"
-        >
-          Api: {props.usedCalls} of 150 used
-        </div>
-      )}
     </>
   );
 };

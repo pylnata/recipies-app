@@ -8,12 +8,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.RECIPE_INIT:
+    case actionTypes.GET_RECIPE:
       return { ...state, isLoading: true, error: null };
-    case actionTypes.RECIPE_SUCCESS:
+    case actionTypes.GET_RECIPE_SUCCESS:
       return { ...state, isLoading: false, error: null, data: action.data };
-    case actionTypes.RECIPE_FAIL:
-      return { ...state, isLoading: false, error: {message: action.error.message} };
+    case actionTypes.GET_RECIPE_FAIL:
+      return { ...state, isLoading: false, error: action.error };
     default:
       return state;
   }

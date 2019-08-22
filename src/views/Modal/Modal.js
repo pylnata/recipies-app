@@ -8,6 +8,8 @@ const Modal = props => {
   //     return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
   // }
 
+console.log('modal rendered');
+
   return (
     <>
       <Backdrop show={props.show} clicked={props.modalClosed} />
@@ -24,6 +26,7 @@ const Modal = props => {
   );
 };
 
+
 const memoModal = React.memo(
   Modal,
   (prevProps, nextProps) =>
@@ -34,3 +37,4 @@ const memoModal = React.memo(
 export { memoModal as Modal };
 
 export default memoModal;
+

@@ -8,15 +8,18 @@ import { SearchContext } from "../../contexts/SearchContext";
 import { search } from "./actions";
 import { COUNT_RECIPIES_ON_PAGE } from "../../config";
 
+import  useTraceUpdated  from "../../hooks/useTraceUpdated";
+
 import "./RecipeList.scss";
 
 const RecipeList = props => {
   const { query } = useContext(SearchContext);
   const { search, data, isLoading, error } = props;
 
+  useTraceUpdated(props, "RecipeList");
+
   useEffect(() => {
     if (query.length < 1) return;
-    console.log("api call");
     search(query, 0);
   }, [query, search]);
 
@@ -34,7 +37,7 @@ const RecipeList = props => {
   if (isLoading) {
     result = <Spinner />;
   } else if (error) {
-    result = <div>{error.message}</div>;
+    result = <div>{error}</div>;
   } else if (data && data.results) {
     result = data.results.map(item => (
       <RecipeItem recipe={item} key={item.id} />
@@ -55,7 +58,7 @@ const RecipeList = props => {
           pageChangedHandler={onPageClickHandler}
           totalResults={totalResults}
           offset={data.offset}
-          cntOnPage = {COUNT_RECIPIES_ON_PAGE}
+          cntOnPage={COUNT_RECIPIES_ON_PAGE}
         />
       </div>
     </div>

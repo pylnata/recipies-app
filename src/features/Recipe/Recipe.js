@@ -6,6 +6,8 @@ import { getRecipe } from "./actions";
 import Ingredients from "./Ingredients/Ingredients";
 import LikeButton from "../Likes/LikeButton";
 
+import  useTraceUpdated  from "../../hooks/useTraceUpdated";
+
 import "./Recipe.scss";
 
 const Recipe = props => {
@@ -13,8 +15,11 @@ const Recipe = props => {
   if (!recipeId) recipeId = 559251;
   const { isLoading, error, recipe, getRecipe } = props;
 
+  useTraceUpdated(props, "Recipe");
+
   useEffect(() => {
     if (recipeId) {
+      console.log('api recipe call');
       getRecipe(recipeId);
     }
   }, [recipeId, getRecipe]);
@@ -28,7 +33,7 @@ const Recipe = props => {
   }
 
   if (error) {
-    return <div className="recipe bg-white mr-3 ml-3 p-3">{error.message}</div>;
+    return <div className="recipe bg-white mr-3 ml-3 p-3">{error}</div>;
   }
 
   if (!recipe || !recipe.id) return null;

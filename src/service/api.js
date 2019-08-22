@@ -2,8 +2,9 @@ import axios from "../axios-recipies";
 import { COUNT_RECIPIES_ON_PAGE } from "../config";
 import * as fakeData from "./data.js";
 
-
 window.localStorage.removeItem("use_fake_data"); // intially
+
+//window.localStorage.setItem("use_fake_data", true); // for test
 
 const alwaysUseFakeNow = () => {
   window.localStorage.setItem("use_fake_data", true);
@@ -29,7 +30,7 @@ export const getRecipe = (id, useFakeData = false) => {
 
     if (fakeData.recipies[id]) {
       return new Promise(function(resolve) {
-        setTimeout(() => resolve({ data: fakeData.recipies[id] }), 500);
+        setTimeout(() => resolve({ data: fakeData.recipies[id] }), 2000);
       });
     } else {
       return Promise.reject(
