@@ -2,16 +2,16 @@
 
 # Recipies-App
 
-This simple project was developed by me in order to polish React Hooks usage, including creation of  custom hooks. 
+This simple project was developed by me in order to polish React Hooks usage, including creation of  custom hooks. Also I use redux-observable, that I found really helpful here. 
 
-Here I use only functional components and React Hooks. 
+In this project I use only functional components and React Hooks. 
 
 Used: 
 * create-react-app;
 * bootstrap + reactstrap;
 * redux-persistent;
+* redux-observable;
 * axios;
-* ....
 
 Application allowes: 
 * to search for recipies by keyword (using spoonacular API);
