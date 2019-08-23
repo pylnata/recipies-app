@@ -7,9 +7,6 @@ import Logo from "../../assets/img/logo.png";
 import "./Header.scss";
 
 const Header = props => {
-
-  console.log('header rendered');
-
   return (
     <>
       <header className="d-flex justify-content-center align-items-start">
@@ -17,7 +14,7 @@ const Header = props => {
         <div className="title  d-none d-lg-block">RecipiesApp</div>
         <SearchForm />
 
-                <a className="text-dark ml-2 mt-2"
+                <a className="text-success ml-3 mt-2"
                   href="https://github.com/pylnata/recipies-app"
                   title="Star on GitHub"
                 >

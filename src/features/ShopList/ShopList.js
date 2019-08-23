@@ -1,47 +1,99 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useMemo, useCallback } from "react";
 import { connect } from "react-redux";
 import { Button } from "reactstrap";
 import ReactToPrint from "react-to-print";
 
 import { removeItem, updateItem } from "./actions";
-import ShopItem from "./ShopItem/ShopItem";
 import PrintPage from "./PrintPage";
+import Item from "./Item/Item";
+import CustomItems from "./CustomItems/CustomItems";
+import { Modal } from "../../views";
+import CustomAddForm from "./CustomAddForm";
 
 import "./ShopList.scss";
 
 const ShopList = props => {
-  const items = props.items;
+  const { items, updateItem, removeItem } = props;
+  const [customItems, setCustomItems] = useState([]);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const componentRef = useRef();
+
+  // Warning! I implemented functionality for custom items in this way just
+  // to create use case when I can appy hooks useMemo and useCallback.
+  // Otherwise, it would be better to use props.items
+  const addCustomItem = useCallback(item => {
+    setCustomItems(prevState => [...prevState, item]);
+    setIsShowModal(false);
+  }, []);
+
+  const removeCustomItem = useCallback(
+    index => {
+      setCustomItems(prevState =>
+        prevState.filter((item, key) => index !== key)
+      );
+    },
+    []
+  );
+
+  const itemList = items.map(item => (
+    <Item
+      key={`${item.id}-${item.unit}`}
+      {...{ item, updateItem, removeItem }}
+    />
+  ));
+
+  const customItemsListMemo = useMemo(
+    () => (
+      <CustomItems items={customItems} removeCustomItem={removeCustomItem} />
+    ),
+    [customItems, removeCustomItem]
+  );
+
+  const customFormAdd = useMemo(() => (
+    <CustomAddForm
+      isShown={isShowModal}
+      onAdd={addCustomItem}
+      onClose={() => setIsShowModal(false)}
+    />
+  ), [isShowModal, addCustomItem]);
+
+  const customItemList = (
+    <>
+      <Modal show={isShowModal} modalClosed={() => setIsShowModal(false)}>
+        {customFormAdd}
+      </Modal>
+      {customItemsListMemo}
+      <Button onClick={() => setIsShowModal(true)}>Add my Item</Button>
+    </>
+  );
 
   return (
     <div className="shop-list pr-3 pt-3">
       <h5>Shop List</h5>
 
       {!items.length && (
-        <div className="text-secondary">Add items from recipe ingredients</div>
-      )}
-
-      {items.map(item => (
-        <ShopItem
-          key={`${item.id}-${item.unit}`}
-          item={item}
-          update={amount => props.updateItem(item, amount)}
-          removeClicked={() => props.removeItem(item)}
-        />
-      ))}
-
-      {items.length > 0 && (
-        <div className="text-right">
-          <ReactToPrint
-            trigger={() => <Button color="success">Print</Button>}
-            content={() => componentRef.current}
-          />
-          <div className="d-none">
-            <PrintPage items={items} ref={componentRef} />
-          </div>
+        <div className="text-secondary">
+          Add items from recipe ingredients by clicking on ingredient's name
         </div>
       )}
+
+      {itemList}
+      {customItemList}
+
+      <div className="text-right">
+        {items.length > 0 && (
+          <>
+            <ReactToPrint
+              trigger={() => <Button color="success">Print</Button>}
+              content={() => componentRef.current}
+            />
+            <div className="d-none">
+              <PrintPage items={items} customItems={customItems} ref={componentRef} />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

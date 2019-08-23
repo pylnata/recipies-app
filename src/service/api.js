@@ -4,17 +4,13 @@ import * as fakeData from "./data.js";
 
 window.localStorage.removeItem("use_fake_data"); // intially
 
-//window.localStorage.setItem("use_fake_data", true); // for test
-
 const alwaysUseFakeNow = () => {
   window.localStorage.setItem("use_fake_data", true);
-}
+};
 
 export const getSearchResults = (query, offset = 0, useFakeData = false) => {
-
-  if ( useFakeData || window.localStorage.getItem("use_fake_data")) {
+  if (useFakeData || window.localStorage.getItem("use_fake_data")) {
     alwaysUseFakeNow();
-    console.log('USE FAKE PROMISE!!!!');
     return new Promise(function(resolve) {
       setTimeout(() => resolve({ data: fakeData.results[offset] }), 300);
     });
@@ -26,8 +22,7 @@ export const getSearchResults = (query, offset = 0, useFakeData = false) => {
 };
 
 export const getRecipe = (id, useFakeData = false) => {
-  if ( useFakeData || window.localStorage.getItem("use_fake_data") ) {
-
+  if (useFakeData || window.localStorage.getItem("use_fake_data")) {
     alwaysUseFakeNow();
 
     if (fakeData.recipies[id]) {

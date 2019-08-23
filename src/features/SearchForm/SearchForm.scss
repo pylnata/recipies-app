@@ -9,6 +9,23 @@
   padding: 5px;
 }
 
+.search-form {
+  position: relative;
+
+  .i-search {
+    position: absolute;
+    right: 15px;
+    top: 9px;
+    color: $gray-500;
+    &:hover{
+      color: $gray-300;
+      cursor: pointer;
+    }
+  }
+
+}
+
+
 .search-btn {
 border: 0;
 }

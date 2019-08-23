@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-
-import "./ShopItem.scss";
+import "./Item.scss";
 
 const ShopItem = props => {
-  const item = props.item;
+  const { item, updateItem, removeItem } = props;
   const amount = Math.round(item.amount * 10) / 10;
   const [value, updateValue] = useState(amount);
 
@@ -21,7 +20,7 @@ const ShopItem = props => {
 
   const onBlurHandler = event => {
     if (value !== "" && value !== "0") {
-      props.update(Number(value));
+      updateItem(item, Number(value));
     } else {
       updateValue(amount);
     }
@@ -40,7 +39,7 @@ const ShopItem = props => {
         {item.unit} {item.name}
       </span>
       <i
-        onClick={props.removeClicked}
+        onClick={removeItem.bind(this, item)}
         className="shop-item__remove fas fa-trash"
       />
     </div>

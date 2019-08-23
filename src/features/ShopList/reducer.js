@@ -6,16 +6,14 @@ const addItem = (state, action) => {
   const existsItemIndex = state.findIndex(
     item => item.id === action.item.id && item.unit === action.item.unit
   );
-  // TODO
+
   if (existsItemIndex !== -1) {
-    const existsItem = state[existsItemIndex];
-    const newState = [...state];
-    const newItem = {
-      ...existsItem,
-      amount: existsItem.amount + action.item.amount
-    };
-    newState[existsItemIndex] = newItem;
-    return newState;
+    return state.map((item, index) => {
+      if (index === existsItemIndex) {
+        return { ...item, amount: item.amount + action.item.amount };
+      }
+      return item;
+    });
   } else {
     return [...state, action.item];
   }
@@ -31,15 +29,12 @@ const updateItem = (state, action) => {
   const existsItemIndex = state.findIndex(
     item => item.id === action.item.id && item.unit === action.item.unit
   );
-  // TODO
-  const existsItem = state[existsItemIndex];
-  const newState = [...state];
-  const newItem = {
-    ...existsItem,
-    amount: action.amount
-  };
-  newState[existsItemIndex] = newItem;
-  return newState;
+  return state.map((item, index) => {
+    if (index === existsItemIndex) {
+      return { ...item, amount: action.item.amount };
+    }
+    return item;
+  });
 };
 
 export default (state = initialState, action) => {

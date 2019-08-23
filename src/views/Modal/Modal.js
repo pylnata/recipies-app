@@ -4,12 +4,6 @@ import Backdrop from "../Backdrop/Backdrop";
 import "./Modal.scss";
 
 const Modal = props => {
-  // shouldComponentUpdate ( nextProps, nextState ) {
-  //     return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
-  // }
-
-console.log('modal rendered');
-
   return (
     <>
       <Backdrop show={props.show} clicked={props.modalClosed} />

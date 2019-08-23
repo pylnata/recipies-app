@@ -1,7 +1,7 @@
 import React from "react";
 
 import Modal from "../views/Modal/Modal";
-import useHttpErrorHandler from "../hooks/http-error-handler";
+import useHttpErrorHandler from "../hooks/useHttpErrorHandler";
 import axios from "../axios-recipies";
 
 const WithErrorHandler = props => {
@@ -15,14 +15,17 @@ const WithErrorHandler = props => {
         {error ? error.message : null}
       </Modal>
 
-      {usedCallsDisplay > 0 && (
-        <div
-          className="apistat"
-          title="shows how many calls used of day's limit at api https://spoonacular.com"
-        >
-          Api: {usedCallsDisplay} of 150 used
-        </div>
-      )}
+      <div
+        className="apistat"
+        title={
+          usedCallsDisplay > 0 ?
+          "shows how many calls used of day's limit at api https://spoonacular.com" : ""
+        }
+      >
+        {usedCallsDisplay > 0
+          ? `Api: ${usedCallsDisplay} of 150 used`
+          : `Fake data is used now`}
+      </div>
 
       {props.children}
     </>

@@ -1,4 +1,13 @@
 .shop-list {
   grid-area: shop-list;
   overflow-y: auto;
+  font-size: .8em;
+  h6 {
+    font-size: 1.2em;
+  }
+
+  .btn {
+    font-size: 1.2em;
+  }
 }
+

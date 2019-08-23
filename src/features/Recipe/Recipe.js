@@ -19,7 +19,6 @@ const Recipe = props => {
 
   useEffect(() => {
     if (recipeId) {
-      console.log('api recipe call');
       getRecipe(recipeId);
     }
   }, [recipeId, getRecipe]);
