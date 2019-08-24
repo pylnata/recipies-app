@@ -2,6 +2,8 @@
 
 # Recipies-App
 
+Lives here: https://recipies-react-app.herokuapp.com/
+
 This simple project was developed by me in order to polish React Hooks usage, including creation of  custom hooks. Also I use redux-observable, that I found really helpful here. 
 
 In this project I use only functional components and React Hooks (almost all existed). 
@@ -18,7 +20,8 @@ Application allowes:
 * to search for recipies by keyword (using spoonacular API);
 * to view recipe details;
 * save recipes to Favourite List;
-* create editable shop list based on ingredients from recipies.
+* create editable shop list by choosing ingfredients from recipies;
+* add own items to shop list;
 
 P.S. Due to restrictions of usage spoonacular API it is possible to have only 150 calls to their service per day, so in case if limit is reached fake data is used.
 
