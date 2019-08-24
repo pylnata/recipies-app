@@ -6,9 +6,9 @@ import ReactToPrint from "react-to-print";
 import { removeItem, updateItem } from "./actions";
 import PrintPage from "./PrintPage";
 import Item from "./Item/Item";
-import CustomItems from "./CustomItems/CustomItems";
+import CustomItems from "./Custom/CustomItems";
 import { Modal } from "../../views";
-import CustomAddForm from "./CustomAddForm";
+import CustomAddForm from "./Custom/CustomAddForm";
 
 import "./ShopList.scss";
 

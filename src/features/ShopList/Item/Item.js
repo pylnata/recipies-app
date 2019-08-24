@@ -3,7 +3,7 @@ import "./Item.scss";
 
 const ShopItem = props => {
   const { item, updateItem, removeItem } = props;
-  const amount = Math.round(item.amount * 10) / 10;
+  const amount = item.amount;
   const [value, updateValue] = useState(amount);
 
   useEffect(() => {

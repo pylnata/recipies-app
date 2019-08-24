@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 class PrintPage extends Component {
   render() {
+
+    console.log(this.props.items)
+    console.log(this.props.customItems)
+    console.log('---');
     const allItems = this.props.items.concat(this.props.customItems);
     return (
       <table style={{margin: '30px', width: "100%", fontSize: "20px"}}>
@@ -13,7 +17,7 @@ class PrintPage extends Component {
           </tr>
         </thead>
         <tbody>
-          {allItems.map(item => <tr key={`${item.id}-${item.unit}`}>
+          {allItems.map((item, index) => <tr key={`${index}`}>
             <td>{item.amount}</td>
             <td>{item.unit}</td>
             <td>{item.name}</td>
@@ -24,13 +28,7 @@ class PrintPage extends Component {
   }
 }
 
-const memoPrintPage = React.memo(
-  PrintPage,
-  (prevProps, nextProps) =>
-    nextProps.items === prevProps.items &&
-    nextProps.children === prevProps.children
-);
 
-export { memoPrintPage as PrintPage };
+export { PrintPage };
 
 export default PrintPage;
