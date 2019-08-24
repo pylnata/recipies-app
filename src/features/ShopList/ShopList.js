@@ -82,7 +82,7 @@ const ShopList = props => {
       {customItemList}
 
       <div className="text-right">
-        {items.length > 0 && (
+        {(items.length > 0 || customItems.length > 0) && (
           <>
             <ReactToPrint
               trigger={() => <Button color="success">Print</Button>}

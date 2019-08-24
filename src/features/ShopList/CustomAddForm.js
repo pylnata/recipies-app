@@ -26,6 +26,7 @@ const CustomAddForm = props => {
           type="text"
           name="name"
           value={name}
+          required
           onChange={event => {
             setName(event.target.value);
           }}

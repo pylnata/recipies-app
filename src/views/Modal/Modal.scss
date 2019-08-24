@@ -6,6 +6,10 @@
   left: 15%;
   top: 30%;
   transition: all 0.3s ease-out;
+
+  form label {
+    font-size: 1.2em;
+  }
 }
 
 @media (min-width: 600px) {

@@ -4,7 +4,7 @@
 
 This simple project was developed by me in order to polish React Hooks usage, including creation of  custom hooks. Also I use redux-observable, that I found really helpful here. 
 
-In this project I use only functional components and React Hooks. 
+In this project I use only functional components and React Hooks (almost all existed). 
 
 Used: 
 * create-react-app;
@@ -12,6 +12,7 @@ Used:
 * redux-persistent;
 * redux-observable;
 * axios;
+
 
 Application allowes: 
 * to search for recipies by keyword (using spoonacular API);
