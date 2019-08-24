@@ -7,7 +7,7 @@ const instance = axios.create({
     params: {
       apiKey: config.API_KEY
     },
-    timeout: 4000
+    timeout: 10000
 });
 
 export default instance;
