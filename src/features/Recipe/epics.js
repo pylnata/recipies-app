@@ -16,6 +16,7 @@ export const getRecipeEpic = action$ =>
         map(response => getRecipeSuccess(response.data)),
         catchError(error => {
           if (error.needFakeData) {
+            api.alwaysUseFakeNow();
             return from(api.getRecipe(601651, true)).map(response =>
               getRecipeSuccess(response.data)
             );

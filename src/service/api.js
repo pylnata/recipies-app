@@ -4,7 +4,7 @@ import * as fakeData from "./data.js";
 
 window.localStorage.removeItem("use_fake_data"); // intially
 
-const alwaysUseFakeNow = () => {
+export const alwaysUseFakeNow = () => {
   window.localStorage.setItem("use_fake_data", true);
 };
 
