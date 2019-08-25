@@ -50,7 +50,7 @@ const SearchForm = props => {
   };
 
   return (
-    <Form method="post" className="d-flex align-items-start ml-3">
+    <Form method="post" onSubmit={onSubmitHandler} className="d-flex align-items-start ml-3">
       <div className="d-flex flex-column justify-content-start search-form">
         <input
           type="text"

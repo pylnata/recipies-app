@@ -22,7 +22,8 @@ const WithErrorHandler = props => {
           "shows how many calls used of day's limit at api https://spoonacular.com" : ""
         }
       >
-        {usedCallsDisplay > 0 
+
+        {usedCallsDisplay > 0
           ? `Api: ${usedCallsDisplay} of 150 used`
           : `Fake data is used now`}
       </div>

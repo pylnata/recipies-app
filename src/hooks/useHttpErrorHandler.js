@@ -22,6 +22,9 @@ export default httpClient => {
   });
   const resInterceptor = httpClient.interceptors.response.use(
     res => {
+
+      console.log(res)
+
       if (res.headers["x-api-quota-used"] > 0) {
         const usedCalls = res.headers["x-api-quota-used"];
         dispatch({type: "RESPONSE", usedCalls})
