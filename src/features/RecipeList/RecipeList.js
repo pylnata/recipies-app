@@ -1,6 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useCallback } from "react";
 import { Spinner } from "reactstrap";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import RecipeItem from "./RecipeItem/RecipeItem";
 import Paging from "./Paging";
@@ -14,20 +14,33 @@ import "./RecipeList.scss";
 
 const RecipeList = props => {
   const { query } = useContext(SearchContext);
-  const { search, data, isLoading, error } = props;
+
+  const dispatch = useDispatch();
+
+  const runSearch = useCallback(
+    (query, offset, useFakeData) =>
+      dispatch(search(query, offset, useFakeData)),
+    [dispatch]
+  );
+
+  const { data, isLoading, error } = useSelector(({ recipeList }) => ({
+    isLoading: recipeList.isLoading,
+    data: recipeList.data,
+    error: recipeList.error
+  }));
 
   useTraceUpdated(props, "RecipeList");
 
   useEffect(() => {
     if (query.length < 1) return;
-    search(query, 0);
-  }, [query, search]);
+    runSearch(query, 0);
+  }, [query, runSearch]);
 
   const onPageClickHandler = page => {
     if (page === "next") {
-      search(query, data.offset + COUNT_RECIPIES_ON_PAGE);
+      runSearch(query, data.offset + COUNT_RECIPIES_ON_PAGE);
     } else if (page === "prev") {
-      search(query, data.offset - COUNT_RECIPIES_ON_PAGE);
+      runSearch(query, data.offset - COUNT_RECIPIES_ON_PAGE);
     }
   };
 
@@ -65,22 +78,7 @@ const RecipeList = props => {
   );
 };
 
-const mapStateToProps = ({ recipeList }) => ({
-  isLoading: recipeList.isLoading,
-  data: recipeList.data,
-  error: recipeList.error
-});
 
-const mapDispatchToProps = dispatch => ({
-  search: (query, offset, useFakeData) =>
-    dispatch(search(query, offset, useFakeData))
-});
+export { RecipeList };
 
-const connectedRecipeList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RecipeList);
-
-export { connectedRecipeList as RecipeList };
-
-export default connectedRecipeList;
+export default RecipeList;

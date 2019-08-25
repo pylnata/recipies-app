@@ -1,11 +1,19 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { addLikeItem, removeLikeItem } from "../Likes/actions";
 
 const LikeButton = props => {
-  const { addLike, removeLike, likes, recipe } = props;
+  const { recipe } = props;
+
+  const likes = useSelector(state=>state.likes);
+  const dispatch = useDispatch();
+  const {addLike, removeLike} = {
+    addLike: item => dispatch(addLikeItem(item)),
+    removeLike: id => dispatch(removeLikeItem(id))
+  }
+
   const liked = likes.findIndex(item => item.id === recipe.id) !== -1;
 
   const onLikeClickHanlder = () => {
@@ -29,20 +37,7 @@ const LikeButton = props => {
   );
 };
 
-const mapStateToProps = ({ likes }) => ({
-  likes
-});
 
-const mapDispatchToProps = dispatch => ({
-  addLike: item => dispatch(addLikeItem(item)),
-  removeLike: id => dispatch(removeLikeItem(id))
-});
+export { LikeButton };
 
-const connectedLikeButton = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LikeButton);
-
-export { connectedLikeButton as LikeButton };
-
-export default connectedLikeButton;
+export default LikeButton;

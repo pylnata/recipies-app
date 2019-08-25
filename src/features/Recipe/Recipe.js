@@ -1,27 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { UncontrolledCollapse, Badge, Spinner } from "reactstrap";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getRecipe } from "./actions";
 import Ingredients from "./Ingredients/Ingredients";
 import LikeButton from "../Likes/LikeButton";
 
-import  useTraceUpdated  from "../../hooks/useTraceUpdated";
+import useTraceUpdated from "../../hooks/useTraceUpdated";
 
 import "./Recipe.scss";
 
 const Recipe = props => {
   let recipeId = props.match.params.recipe_id;
   if (!recipeId) recipeId = 559251;
-  const { isLoading, error, recipe, getRecipe } = props;
+
+  const dispatch = useDispatch();
+
+  const getRecipeById = useCallback(id => dispatch(getRecipe(id)), [dispatch]);
+
+  const { recipe, isLoading, error } = useSelector(({ recipe }) => ({
+    recipe: recipe.data,
+    isLoading: recipe.isLoading,
+    error: recipe.error
+  }));
 
   useTraceUpdated(props, "Recipe");
 
   useEffect(() => {
+  //  console.log('load recipe');
     if (recipeId) {
-      getRecipe(recipeId);
+      getRecipeById(recipeId);
     }
-  }, [recipeId, getRecipe]);
+  }, [recipeId, getRecipeById]);
 
   if (isLoading) {
     return (
@@ -102,21 +112,7 @@ const Recipe = props => {
   );
 };
 
-const mapStateToProps = ({ recipe }) => ({
-  recipe: recipe.data,
-  isLoading: recipe.isLoading,
-  error: recipe.error
-});
 
-const mapDispatchToProps = dispatch => ({
-  getRecipe: id => dispatch(getRecipe(id))
-});
+export { Recipe };
 
-const connectedRecipe = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Recipe);
-
-export { connectedRecipe as Recipe };
-
-export default connectedRecipe;
+export default Recipe;

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo, useCallback } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Button } from "reactstrap";
 import ReactToPrint from "react-to-print";
 
@@ -13,9 +13,19 @@ import CustomAddForm from "./Custom/CustomAddForm";
 import "./ShopList.scss";
 
 const ShopList = props => {
-  const { items, updateItem, removeItem } = props;
   const [customItems, setCustomItems] = useState([]);
   const [isShowModal, setIsShowModal] = useState(false);
+
+  const { items } = useSelector(state => ({
+    items: state.shopList
+  }));
+
+  const dispatch = useDispatch();
+
+  const { updateShopListItem, removeShopListItem } = {
+    removeShopListItem: item => dispatch(removeItem(item)),
+    updateShopListItem: (item, amount) => dispatch(updateItem(item, amount))
+  };
 
   const componentRef = useRef();
 
@@ -27,19 +37,16 @@ const ShopList = props => {
     setIsShowModal(false);
   }, []);
 
-  const removeCustomItem = useCallback(
-    index => {
-      setCustomItems(prevState =>
-        prevState.filter((item, key) => index !== key)
-      );
-    },
-    []
-  );
+  const removeCustomItem = useCallback(index => {
+    setCustomItems(prevState => prevState.filter((item, key) => index !== key));
+  }, []);
 
   const itemList = items.map(item => (
     <Item
       key={`${item.id}-${item.unit}`}
-      {...{ item, updateItem, removeItem }}
+      item={item}
+      updateItem={updateShopListItem}
+      removeItem={removeShopListItem}
     />
   ));
 
@@ -50,13 +57,16 @@ const ShopList = props => {
     [customItems, removeCustomItem]
   );
 
-  const customFormAdd = useMemo(() => (
-    <CustomAddForm
-      isShown={isShowModal}
-      onAdd={addCustomItem}
-      onClose={() => setIsShowModal(false)}
-    />
-  ), [isShowModal, addCustomItem]);
+  const customFormAdd = useMemo(
+    () => (
+      <CustomAddForm
+        isShown={isShowModal}
+        onAdd={addCustomItem}
+        onClose={() => setIsShowModal(false)}
+      />
+    ),
+    [isShowModal, addCustomItem]
+  );
 
   const customItemList = (
     <>
@@ -89,7 +99,11 @@ const ShopList = props => {
               content={() => componentRef.current}
             />
             <div className="d-none">
-              <PrintPage items={items} customItems={customItems} ref={componentRef} />
+              <PrintPage
+                items={items}
+                customItems={customItems}
+                ref={componentRef}
+              />
             </div>
           </>
         )}
@@ -98,20 +112,7 @@ const ShopList = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  items: state.shopList
-});
 
-const mapDispatchToProps = dispatch => ({
-  removeItem: item => dispatch(removeItem(item)),
-  updateItem: (item, amount) => dispatch(updateItem(item, amount))
-});
+export { ShopList };
 
-const connectedShopList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShopList);
-
-export { connectedShopList };
-
-export default connectedShopList;
+export default ShopList;

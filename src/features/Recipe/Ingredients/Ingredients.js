@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { addItem } from "../../ShopList/actions";
 import Ingredient from "./Ingredient";
@@ -7,6 +7,10 @@ import Ingredient from "./Ingredient";
 import "./Ingredients.scss";
 
 const Ingredients = props => {
+
+  const dispatch = useDispatch();
+  const addItemToShopList = item => dispatch(addItem(item));
+
   const onClickHandler = item => {
     const shopItem = {
       id: item.id,
@@ -14,7 +18,7 @@ const Ingredients = props => {
       unit: item.measures.us.unitShort,
       amount: item.measures.us.amount
     };
-    props.addItemToShopList(shopItem);
+    addItemToShopList(shopItem);
   };
 
   return (
@@ -30,13 +34,5 @@ const Ingredients = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  addItemToShopList: item => dispatch(addItem(item))
-});
 
-const connectedIngredients = connect(
-  null,
-  mapDispatchToProps
-)(Ingredients);
-
-export default connectedIngredients;
+export default Ingredients;

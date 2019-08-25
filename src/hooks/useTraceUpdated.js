@@ -1,6 +1,6 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 
-export const useTraceUpdate =(props, componentName) => {
+export const useTraceUpdate = (props, componentName) => {
   const prev = useRef(props);
   useEffect(() => {
     const changedProps = Object.entries(props).reduce((ps, [k, v]) => {
@@ -9,11 +9,12 @@ export const useTraceUpdate =(props, componentName) => {
       }
       return ps;
     }, {});
+
     if (Object.keys(changedProps).length > 0) {
-      console.log(componentName + ' updated. Changed props:', changedProps);
+      console.log(componentName + " updated. Changed props:", changedProps);
     }
     prev.current = props;
   });
-}
+};
 
 export default useTraceUpdate;
