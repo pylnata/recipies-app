@@ -1,9 +1,11 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 
 export const SearchContext = createContext({
   query: "",
   updateQuery: () => {}
 });
+
+export const useSearchContext = () => useContext(SearchContext);
 
 export const SearchProvider = props => {
   const [query, updateQuery] = useState("pizza");

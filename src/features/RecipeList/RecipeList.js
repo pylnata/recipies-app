@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, useCallback } from "react";
+import React from "react";
 import { Spinner } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 import RecipeItem from "./RecipeItem/RecipeItem";
 import Paging from "./Paging";
-import { SearchContext } from "../../contexts/SearchContext";
+import { useSearchContext } from "../../contexts/SearchContext";
 import { search } from "./actions";
 import { COUNT_RECIPIES_ON_PAGE } from "../../config";
 
@@ -12,35 +12,22 @@ import useTraceUpdated from "../../hooks/useTraceUpdated";
 
 import "./RecipeList.scss";
 
-const RecipeList = props => {
-  const { query } = useContext(SearchContext);
-
-  const dispatch = useDispatch();
-
-  const runSearch = useCallback(
-    (query, offset, useFakeData) =>
-      dispatch(search(query, offset, useFakeData)),
-    [dispatch]
-  );
-
-  const { data, isLoading, error } = useSelector(({ recipeList }) => ({
-    isLoading: recipeList.isLoading,
-    data: recipeList.data,
-    error: recipeList.error
-  }));
+export const RecipeList = props => {
+  const { query } = useSearchContext();
+  const { search, data, isLoading, error } = props;
 
   useTraceUpdated(props, "RecipeList");
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (query.length < 1) return;
-    runSearch(query, 0);
-  }, [query, runSearch]);
+    search(query, 0);
+  }, [query, search]);
 
   const onPageClickHandler = page => {
     if (page === "next") {
-      runSearch(query, data.offset + COUNT_RECIPIES_ON_PAGE);
+      search(query, data.offset + COUNT_RECIPIES_ON_PAGE);
     } else if (page === "prev") {
-      runSearch(query, data.offset - COUNT_RECIPIES_ON_PAGE);
+      search(query, data.offset - COUNT_RECIPIES_ON_PAGE);
     }
   };
 
@@ -67,6 +54,7 @@ const RecipeList = props => {
     <div className="recipies d-flex justify-content-start justify-content-md-between flex-column">
       <div className="recipies__list d-flex flex-column ">{result}</div>
       <div className="text-center">
+        
         <Paging
           pageChangedHandler={onPageClickHandler}
           totalResults={totalResults}
@@ -78,7 +66,21 @@ const RecipeList = props => {
   );
 };
 
+const mapStateToProps = ({ recipeList }) => ({
+  isLoading: recipeList.isLoading,
+  data: recipeList.data,
+  error: recipeList.error
+});
 
-export { RecipeList };
+const mapDispatchToProps = dispatch => ({
+  search: (query, offset) =>
+    dispatch(search(query, offset))
+});
 
-export default RecipeList;
+
+const connectedRecipeList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RecipeList);
+
+export default connectedRecipeList;
