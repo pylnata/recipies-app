@@ -6,6 +6,11 @@ Lives here: https://recipies-react-app.herokuapp.com/
 
 This simple project was developed by me in order to polish React Hooks usage, including creation of  custom hooks. Also I use redux-observable, that I found really helpful here. 
 
+And also this project covered partially with unit tests.
+I found a solution to test functional components with hooks using jest.shallow and mocking hooks. 
+
+You could find example here https://gist.github.com/pylnata/43821fb253557254afcbee0288e97640
+
 In this project I use only functional components and React Hooks (almost all existed). 
 
 Used: 
@@ -15,6 +20,10 @@ Used:
 * redux-observable;
 * axios;
 
+For tests:
+* jest 
+* enzyme
+* redux-mock-store
 
 Application allowes: 
 * to search for recipies by keyword (using spoonacular API);
