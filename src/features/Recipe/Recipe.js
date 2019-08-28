@@ -50,7 +50,7 @@ const Recipe = props => {
     : null;
   let stepsResult = null;
 
-  if (steps && 0) {
+  if (steps) {
     stepsResult = (
       <div className="align-self-start m-0 p-3">
         <span id="toggleLink" className="toggler mb-0">
