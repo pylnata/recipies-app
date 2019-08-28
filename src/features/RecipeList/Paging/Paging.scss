@@ -1,0 +1,16 @@
+@import "../../../assets/scss/theme";
+
+.page {
+  font-size: 1.5em;
+  cursor: pointer;
+  &:hover {
+    color: $success;
+  }
+  &--noactive {
+    cursor: initial;
+    color: $gray-500;
+    &:hover {
+      color: $gray-500;
+    }
+  }
+}

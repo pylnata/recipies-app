@@ -1,55 +1,65 @@
 import React from "react";
 import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { RecipeList } from "./RecipeList";
+import configureStore from "redux-mock-store";
+
 import { results } from "../../service/data";
-import RecipeItem from "./RecipeItem/RecipeItem";
 import * as SearchContext from "../../contexts/SearchContext";
-import Paging from "./Paging";
+import * as ReactReduxHooks from "../../hooks/react-redux";
+import { RecipeList } from "./RecipeList";
+import RecipeItem from "./RecipeItem/RecipeItem";
+import Paging from "./Paging/Paging";
 
 configure({ adapter: new Adapter() });
 
 describe("RecipeList", () => {
   let wrapper;
   let useEffect;
-  let props;
+  let store;
 
   const mockUseEffect = () => {
     useEffect.mockImplementationOnce(f => f());
   };
 
   beforeEach(() => {
+    store = configureStore()({
+      data: results[0],
+      isLoading: false,
+      error: null
+    });
+
     useEffect = jest.spyOn(React, "useEffect");
     mockUseEffect();
     mockUseEffect();
 
-    props = {
-      search: jest.fn().mockImplementation(() => {}),
-      data: { results: [], totalResults: 0, offset: 0 }
-    };
-
-    // mock for context
-    const contextValues = { query: "pizza" };
+    const contextValues = { query: "soup" };
     jest
       .spyOn(SearchContext, "useSearchContext")
       .mockImplementation(() => contextValues);
 
-    wrapper = shallow(<RecipeList {...props} />);
+    jest
+      .spyOn(ReactReduxHooks, "useSelector")
+      .mockImplementation(state => store.getState());
+
+    jest
+      .spyOn(ReactReduxHooks, "useDispatch")
+      .mockImplementation(() => store.dispatch);
+
+    wrapper = shallow(<RecipeList store={store} />);
   });
 
   describe("on start", () => {
-    it("calls search from props", () => {
-      expect(props.search).toHaveBeenCalled();
+    it("dispatch search action to store", () => {
+      const actions = store.getActions();
+      expect(actions).toEqual([{ type: "SEARCH", query: "soup", offset: 0 }]);
     });
   });
 
   it("should render RecipeItem components if data.results is not empty", () => {
-    wrapper.setProps({ data: results[0] });
     expect(wrapper.find(RecipeItem)).toHaveLength(7);
   });
 
-  it("should render Page component if data.results is not empty", () => {
-    wrapper.setProps({ data: results[0] });
+  it("should render Paging component if data.results is not empty", () => {
     expect(wrapper.find(Paging)).toHaveLength(1);
   });
 });

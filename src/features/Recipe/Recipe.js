@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import { UncontrolledCollapse, Badge, Spinner } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../hooks/react-redux";
 
 import { getRecipe } from "./actions";
 import Ingredients from "./Ingredients/Ingredients";
@@ -16,7 +16,6 @@ const Recipe = props => {
 
   const dispatch = useDispatch();
 
-  const getRecipeById = useCallback(id => dispatch(getRecipe(id)), [dispatch]);
 
   const { recipe, isLoading, error } = useSelector(({ recipe }) => ({
     recipe: recipe.data,
@@ -26,12 +25,11 @@ const Recipe = props => {
 
   useTraceUpdated(props, "Recipe");
 
-  useEffect(() => {
-  //  console.log('load recipe');
+  React.useEffect(() => {
     if (recipeId) {
-      getRecipeById(recipeId);
+      dispatch(getRecipe(recipeId));
     }
-  }, [recipeId, getRecipeById]);
+  }, [recipeId, dispatch]);
 
   if (isLoading) {
     return (
@@ -52,19 +50,21 @@ const Recipe = props => {
     : null;
   let stepsResult = null;
 
-  if (steps) {
+  if (steps && 0) {
     stepsResult = (
       <div className="align-self-start m-0 p-3">
-        <span id="toggler" className="toggler mb-0">
+        <span id="toggleLink" className="toggler mb-0">
           See instructions
         </span>
-        <UncontrolledCollapse toggler="#toggler">
+
+        <UncontrolledCollapse toggler="#toggleLik">
           <ol className="m-0 p-3 ">
             {recipe.analyzedInstructions[0].steps.map(item => (
               <li key={item.number}>{item.step}</li>
             ))}
           </ol>
         </UncontrolledCollapse>
+
       </div>
     );
   }

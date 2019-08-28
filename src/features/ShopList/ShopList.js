@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../hooks/react-redux";
 import { Button } from "reactstrap";
 import ReactToPrint from "react-to-print";
 
@@ -111,8 +111,5 @@ const ShopList = props => {
     </div>
   );
 };
-
-
-export { ShopList };
 
 export default ShopList;

@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Paging.scss";
+
 const Paging = props => {
   const { offset, totalResults, pageChangedHandler, cntOnPage } = props;
 

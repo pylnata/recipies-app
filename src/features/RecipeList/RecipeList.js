@@ -1,9 +1,9 @@
 import React from "react";
 import { Spinner } from "reactstrap";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "../../hooks/react-redux";
 
 import RecipeItem from "./RecipeItem/RecipeItem";
-import Paging from "./Paging";
+import Paging from "./Paging/Paging";
 import { useSearchContext } from "../../contexts/SearchContext";
 import { search } from "./actions";
 import { COUNT_RECIPIES_ON_PAGE } from "../../config";
@@ -12,22 +12,28 @@ import useTraceUpdated from "../../hooks/useTraceUpdated";
 
 import "./RecipeList.scss";
 
-export const RecipeList = props => {
+const RecipeList = props => {
   const { query } = useSearchContext();
-  const { search, data, isLoading, error } = props;
+  const dispatch = useDispatch();
+
+  const { data, isLoading, error } = useSelector(({ recipeList }) => ({
+    isLoading: recipeList.isLoading,
+    data: recipeList.data,
+    error: recipeList.error
+  }));
 
   useTraceUpdated(props, "RecipeList");
 
   React.useEffect(() => {
     if (query.length < 1) return;
-    search(query, 0);
-  }, [query, search]);
+    dispatch(search(query, 0));
+  }, [query, dispatch]);
 
   const onPageClickHandler = page => {
     if (page === "next") {
-      search(query, data.offset + COUNT_RECIPIES_ON_PAGE);
+      dispatch(search(query, data.offset + COUNT_RECIPIES_ON_PAGE));
     } else if (page === "prev") {
-      search(query, data.offset - COUNT_RECIPIES_ON_PAGE);
+      dispatch(search(query, data.offset - COUNT_RECIPIES_ON_PAGE));
     }
   };
 
@@ -54,7 +60,6 @@ export const RecipeList = props => {
     <div className="recipies d-flex justify-content-start justify-content-md-between flex-column">
       <div className="recipies__list d-flex flex-column ">{result}</div>
       <div className="text-center">
-        
         <Paging
           pageChangedHandler={onPageClickHandler}
           totalResults={totalResults}
@@ -66,21 +71,6 @@ export const RecipeList = props => {
   );
 };
 
-const mapStateToProps = ({ recipeList }) => ({
-  isLoading: recipeList.isLoading,
-  data: recipeList.data,
-  error: recipeList.error
-});
+export { RecipeList };
 
-const mapDispatchToProps = dispatch => ({
-  search: (query, offset) =>
-    dispatch(search(query, offset))
-});
-
-
-const connectedRecipeList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RecipeList);
-
-export default connectedRecipeList;
+export default RecipeList;

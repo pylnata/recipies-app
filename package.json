@@ -29,7 +29,7 @@
     "start-dev": "react-scripts start",
     "start": "node server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
