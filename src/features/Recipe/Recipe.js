@@ -57,7 +57,7 @@ const Recipe = props => {
           See instructions
         </span>
 
-        <UncontrolledCollapse toggler="#toggleLik">
+        <UncontrolledCollapse toggler="#toggleLink">
           <ol className="m-0 p-3 ">
             {recipe.analyzedInstructions[0].steps.map(item => (
               <li key={item.number}>{item.step}</li>
