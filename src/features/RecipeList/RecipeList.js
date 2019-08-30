@@ -22,6 +22,7 @@ const RecipeList = props => {
     error: recipeList.error
   }));
 
+
   useTraceUpdated(props, "RecipeList");
 
   React.useEffect(() => {

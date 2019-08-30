@@ -22,7 +22,6 @@ export const searchEpic = action$ =>
         map(response => searchSuccess(response.data)),
         catchError(error => {
           if (error.needFakeData) {
-            //api.alwaysUseFakeNow();
             return from(api.getSearchResults("", 0, true)).map(response =>
               searchSuccess(response.data)
             );

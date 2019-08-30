@@ -16,9 +16,9 @@ describe("ShopList", () => {
   beforeEach(() => {
     store = configureStore()({
       items: [
-        {id:1, name: 'Bread', amount: 1, unit: 'kg'},
-        {id:2, name: 'Milk', amount: 2, unit: 'oz'},
-    ]
+        { id: 1, name: "Bread", amount: 1, unit: "kg" },
+        { id: 2, name: "Milk", amount: 2, unit: "oz" }
+      ]
     });
 
     jest
@@ -29,7 +29,7 @@ describe("ShopList", () => {
       .spyOn(ReactReduxHooks, "useDispatch")
       .mockImplementation(() => store.dispatch);
 
-    wrapper = shallow(<ShopList store={store}  />);
+    wrapper = shallow(<ShopList store={store} />);
   });
 
   /*
@@ -40,6 +40,10 @@ describe("ShopList", () => {
     });
   });
 */
+
+  it("should dispatch action removeItem ", () => {});
+
+  it("should dispatch action updateItem ", () => {});
 
   it("should render Item list", () => {
     expect(wrapper.find(Item)).toHaveLength(2);
