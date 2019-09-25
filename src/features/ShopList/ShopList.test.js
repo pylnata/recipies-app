@@ -1,13 +1,11 @@
 import React from "react";
-import { configure, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import configureStore from "redux-mock-store";
 import * as ReactReduxHooks from "../../hooks/react-redux";
 
 import ShopList from "./ShopList";
 import Item from "./Item/Item";
 
-configure({ adapter: new Adapter() });
 
 describe("ShopList", () => {
   let wrapper;

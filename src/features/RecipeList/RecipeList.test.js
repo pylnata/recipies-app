@@ -1,6 +1,5 @@
 import React from "react";
-import { configure, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import configureStore from "redux-mock-store";
 
 import { results } from "../../service/data";
@@ -10,7 +9,6 @@ import { RecipeList } from "./RecipeList";
 import RecipeItem from "./RecipeItem/RecipeItem";
 import Paging from "./Paging/Paging";
 
-configure({ adapter: new Adapter() });
 
 describe("RecipeList", () => {
   let wrapper;

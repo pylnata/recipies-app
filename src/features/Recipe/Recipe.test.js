@@ -1,14 +1,11 @@
 import React from "react";
-import { configure, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import configureStore from "redux-mock-store";
 import * as ReactReduxHooks from "../../hooks/react-redux";
 
 import { Recipe } from "./Recipe";
 import Ingredients from "./Ingredients/Ingredients";
 import { recipies } from "../../service/data";
-
-configure({ adapter: new Adapter() });
 
 describe("Recipe", () => {
   let wrapper;
