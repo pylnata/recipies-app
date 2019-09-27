@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.8",
+    "@types/react": "^16.9.3",
+    "@types/react-dom": "^16.9.1",
+    "@types/react-redux": "^7.1.4",
+    "@types/react-router-dom": "^5.1.0",
+    "@types/reactstrap": "^8.0.4",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "enzyme": "^3.10.0",
@@ -23,7 +30,8 @@
     "redux-observable": "^1.1.0",
     "redux-persist": "^5.10.0",
     "rxjs": "^6.5.2",
-    "rxjs-compat": "^6.5.2"
+    "rxjs-compat": "^6.5.2",
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "start-dev": "react-scripts start",
