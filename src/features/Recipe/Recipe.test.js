@@ -25,7 +25,7 @@ describe("Recipe", () => {
     const props = { match: { params: { recipe_id: recipeId } } };
 
     store = configureStore()({
-      recipe: recipies[recipeId],
+      data: recipies[recipeId],
       isLoading: false,
       error: null
     });

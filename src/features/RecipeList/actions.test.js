@@ -1,11 +1,11 @@
-import { search, searchSuccess, searchFail, actionTypes } from "./actions";
+import { search, searchSuccess, searchFail } from "./actions";
 
 describe("RecipeList actions", () => {
   it("should create an action to search recipes", () => {
     const query = "bread";
     const offset = 7;
     const expectedAction = {
-      type: actionTypes.SEARCH,
+      type: "SEARCH",
       query,
       offset
     };
@@ -15,7 +15,7 @@ describe("RecipeList actions", () => {
   it("should create an action searchSuccess ", () => {
     const data = [{ id: 1, title: "bread" }, { id: 2, title: "soup" }];
     const expectedAction = {
-      type: actionTypes.SEARCH_SUCCESS,
+      type: "SEARCH_SUCCESS",
       data
     };
     expect(searchSuccess(data)).toEqual(expectedAction);
@@ -24,7 +24,7 @@ describe("RecipeList actions", () => {
   it("should create an action searchFail", () => {
     const error = new Error("something is wrong");
     const expectedAction = {
-      type: actionTypes.SEARCH_FAIL,
+      type: "SEARCH_FAIL",
       error
     };
     expect(searchFail(error)).toEqual(expectedAction);
