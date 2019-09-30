@@ -3,7 +3,7 @@ import React from "react";
 import Backdrop from "../Backdrop/Backdrop";
 import "./Modal.scss";
 
-const Modal:React.FC<{show: boolean; modalClosed:()=>void;children:string | null | React.ReactElement;}> = props => {
+const Modal:React.FC<{show: boolean; modalClosed:()=>void; children:React.ReactNode;}> = props => {
   return (
     <>
       <Backdrop show={props.show} clicked={props.modalClosed} />
