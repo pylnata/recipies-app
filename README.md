@@ -4,7 +4,7 @@
 
 Lives here: https://recipies-react-app.herokuapp.com/
 
-This simple project was developed by me in order to polish React Hooks usage, including creation of  custom hooks. Also I use redux-observable, that I found really helpful here. 
+This simple project was developed by me in order to polish React Hooks usage and Typescript with CRA app. Also I use redux-observable, that I found really helpful here. 
 
 And also this project covered partially with unit tests.
 I found a solution to test functional components with hooks using enzyme shallow mode and mocking hooks. 
@@ -17,6 +17,7 @@ In this project I use only functional components and React Hooks (almost all exi
 
 Used: 
 * create-react-app;
+* typescript;
 * bootstrap + reactstrap;
 * redux-persistent;
 * redux-observable;
