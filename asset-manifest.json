@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/recipies-app/static/css/main.3e2f77d6.chunk.css",
+    "main.js": "/recipies-app/static/js/main.43937e25.chunk.js",
+    "runtime~main.js": "/recipies-app/static/js/runtime~main.6b434911.js",
+    "static/js/2.82e65bc0.chunk.js": "/recipies-app/static/js/2.82e65bc0.chunk.js",
+    "index.html": "/recipies-app/index.html",
+    "precache-manifest.599d90cc46c9eac98ef5bb85d5ad7899.js": "/recipies-app/precache-manifest.599d90cc46c9eac98ef5bb85d5ad7899.js",
+    "service-worker.js": "/recipies-app/service-worker.js",
+    "static/media/App.scss": "/recipies-app/static/media/bg.b6abe87a.jpg"
+  }
+}
