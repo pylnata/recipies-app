@@ -2,7 +2,7 @@
 
 # Recipies-App
 
-Lives here: https://recipies-react-app.herokuapp.com/
+Lives here: https://pylnata.github.io/recipies-app/
 
 This simple project was developed by me in order to polish React Hooks usage and Typescript with CRA app. Also I use redux-observable, that I found really helpful here. 
 
