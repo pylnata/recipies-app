@@ -13,7 +13,7 @@ You could find my article about it here
 
 https://medium.com/@pylnata/testing-react-functional-component-using-hooks-useeffect-usedispatch-and-useselector-in-shallow-9cfbc74f62fb
 
-In this project I use only functional components and React Hooks (almost all existed). 
+In this project I use only functional components and React Hooks.
 
 Used: 
 * create-react-app;
