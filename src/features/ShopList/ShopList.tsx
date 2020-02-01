@@ -44,7 +44,7 @@ const ShopList: React.FunctionComponent = () => {
     setCustomItems(prevState => prevState.filter((item, key) => index !== key));
   }, []);
 
-  const itemList = items.length && items.map((item:IShopItem) => (
+  const itemList = items.length > 0 && items.map((item:IShopItem) => (
     <Item
       key={`${item.id}-${item.unit}`}
       item={item}
