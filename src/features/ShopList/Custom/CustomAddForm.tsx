@@ -10,12 +10,12 @@ const CustomAddForm: React.FC<ICustomAddFormProps> = ({
 }) => {
   const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
 
   useEffect(() => {
     setName("");
     setUnit("");
-    setAmount("");
+    setAmount(0);
   }, [setName, setUnit, setAmount, isShown]);
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -44,7 +44,7 @@ const CustomAddForm: React.FC<ICustomAddFormProps> = ({
           name="amount"
           value={amount}
           onChange={event => {
-            setAmount(event.target.value);
+            setAmount(+event.target.value);
           }}
         />
       </FormGroup>
